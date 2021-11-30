@@ -1,0 +1,20 @@
+/* Icons */
+@import url("https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css");
+
+/* Open Sans Font */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans");
+
+:root {
+  font-family: "Open Sans", serif;
+}
+
+body {
+  --color0: gray;
+  background: var(--color0);
+  background-image: var(--color15);
+  color: var(--color5);
+  margin: 0;
+
+  --ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transition: all 200ms ease-in-out;
+}

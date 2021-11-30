@@ -1,0 +1,79 @@
+#graph {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  display: flex;
+
+  background: var(--color1);
+
+  margin: 0;
+  padding: 0;
+}
+
+component#mainGraphWrapper {
+  position: relative;
+  /*background: ;*/
+
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem;
+}
+
+component#mainGraphWrapper canvas {
+  border-radius: 20px;
+  overflow: hidden;
+  filter: drop-shadow(0px 0px 1px var(--color2));
+  border: 5px solid #00000000;
+  transition: all 200ms ease-in-out;
+}
+
+component#mainGraphWrapper canvas:hover {
+  border: 5px solid var(--color8);
+  filter: drop-shadow(0px 0px 10px var(--color7));
+
+  cursor: none;
+}
+
+#graphControl {
+  background: var(--color2);
+  width: 27rem;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*margin-left: 5rem;*/
+}
+
+#variableInputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  overflow: hidden scroll;
+}
+
+#variableInputs component:nth-of-type(5n + 1) .lockableInput {
+  background: var(--color9);
+}
+
+#variableInputs component:nth-of-type(5n + 2) .lockableInput {
+  background: var(--color10);
+}
+
+#variableInputs component:nth-of-type(5n + 3) .lockableInput {
+  background: var(--color11);
+}
+#variableInputs component:nth-of-type(5n + 4) .lockableInput {
+  background: var(--color12);
+}
+#variableInputs component:nth-of-type(5n + 5) .lockableInput {
+  background: var(--color13);
+}

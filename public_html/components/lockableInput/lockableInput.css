@@ -1,0 +1,54 @@
+.lockableInput {
+  display: inline;
+  overflow: hidden;
+  font-size: 1.5rem;
+
+  padding: 1rem;
+  border-radius: 10px;
+
+  display: flex;
+}
+
+.lockableInput-label {
+  width: 20rem;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.lockableInput-unit {
+  font-size: 0.8em;
+  width: 5rem;
+}
+
+.lockableInput-input {
+  font-size: 1.2rem;
+}
+
+.lockableInput-input:disabled {
+  cursor: not-allowed;
+}
+
+.lockableInput-lock {
+  margin-left: 2rem;
+  margin-top: 0.4rem;
+
+  color: floralwhite;
+
+  transform: scale(180%);
+  transition: 200ms all ease-in-out;
+
+  border-radius: 10px;
+}
+
+.locked .lockableInput-lock {
+  color: indianred;
+}
+
+.lockableInput-lock:hover {
+  transform: scale(200%);
+  cursor: pointer;
+}
+
+.lockableInput-lock:active {
+  transform: scale(230%);
+}
