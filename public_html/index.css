@@ -58,6 +58,7 @@ component#mainGraphWrapper canvas:hover {
   justify-content: space-evenly;
 
   overflow: hidden scroll;
+  height: 100%;
 }
 
 #variableInputs component:nth-of-type(5n + 1) .lockableInput {
@@ -76,4 +77,37 @@ component#mainGraphWrapper canvas:hover {
 }
 #variableInputs component:nth-of-type(5n + 5) .lockableInput {
   background: var(--color13);
+}
+
+#recalculate-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+}
+
+#recalculate {
+  position: absolute;
+  font-size: 3rem;
+
+  margin-top: -4rem;
+
+  transition: transform 300ms ease-in-out;
+}
+
+#recalculate:hover {
+  cursor: pointer;
+  transform: scale(110%) rotate(360deg);
+}
+
+#recalculate:active {
+  color: var(--color14);
+}
+
+#error-msg {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: indianred;
+  margin-top: 3rem;
+  text-align: center;
 }

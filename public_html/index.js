@@ -27,13 +27,15 @@ const GraphDimension = new (function () {
   return this;
 })();
 
+window.graphFunc = (x) => 0;
+
 components.on("graph", "mounted", ({ ele }) => {
   const graph = ele.children[0];
 
   // gets cursor position in graph to draw on canvas ( draws at end of function )
   let mousePos = { x: 0, y: 0 };
 
-  ele.graphFunc = (x) => x;
+  ele.graphFunc = (x) => window.graphFunc(x);
 
   graph.onmousemove = (e) => {
     const offset = $(graph).offset();
@@ -178,7 +180,7 @@ const getInputVals = () =>
     // Maps all element's to the input fields values
     .map((query) => query[0].val());
 
-function recalculateSUVAT() {
+$("#recalculate").on("click", function recalculateSUVAT() {
   const [displacement, velInitial, velFinal, acc, time] = getInputVals();
 
   const state = Math.SUVAT({
@@ -191,10 +193,18 @@ function recalculateSUVAT() {
   console.table(state);
 
   if (state === undefined) {
-  } else {
-    getInputFields().forEach((field, i) => {
-      if (field[0].isLocked()) return;
-      field[0].setVal(state[Object.keys(state)[i]]);
-    });
+    $("#error-msg").text(
+      "Please unlock & enter 3 or move values of the system"
+    );
+
+    return;
   }
-}
+  $("#error-msg").text("");
+
+  getInputFields().forEach((field, i) => {
+    if (!field[0].isLocked()) return;
+    field[0].setVal(state[Object.keys(state)[i]]);
+  });
+
+  window.graphFunc = (x) => state.velInitial * x + 0.5 * state.acc * x * x;
+});

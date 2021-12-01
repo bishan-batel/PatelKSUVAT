@@ -17,6 +17,7 @@ components.lockableInput = function ({ label, unit }) {
   };
 
   this.val = () => {
+    if (this.isLocked()) return undefined;
     const val = parseFloat(field.val());
     return isNaN(val) ? undefined : val;
   };
@@ -24,12 +25,12 @@ components.lockableInput = function ({ label, unit }) {
   const lock = lockableInput.children(".lockableInput-lock");
   const lockIcon = lock.children("i");
 
-  field[0].disabled = !lockIcon[0].classList.contains("fi-sr-Lock");
+  field[0].disabled = lockIcon[0].classList.contains("fi-sr-Lock");
 
-  this.isLocked = () => !field[0].disabled;
+  this.isLocked = () => field[0].disabled;
 
   // defines & calls immediately
-  (this.toggleLock = () => {
+  this.toggleLock = () => {
     field[0].disabled = !field[0].disabled;
     lockableInput.toggleClass("locked");
     lockIcon.toggleClass("fi-sr-Lock");
@@ -40,7 +41,10 @@ components.lockableInput = function ({ label, unit }) {
       field[0].value = "";
     }
     this.onToggle?.call();
-  })();
+  };
+
+  this.toggleLock();
+  this.toggleLock();
 
   lock.on("click", () => this.toggleLock());
 

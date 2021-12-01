@@ -13,7 +13,10 @@ Math.Vector2 = function (x, y) {
   this.x = x ?? 0;
   this.y = y ?? 0;
 
-  this.clone = () => Math.createVector(this.x, this.y);
+  this.lerp = ({ x, y }, a) => {
+    this.x = Math.lerp(this.x, x, a);
+    this.y = Math.lerp(this.y, y, a);
+  };
 
   return this;
 };
