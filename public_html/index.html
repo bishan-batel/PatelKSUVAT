@@ -1,18 +1,18 @@
-<html>
-  <head>
+<html lang="en-us">
+<head>
     <title>Looking Sharp, Today!</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link
-      rel="shortcut icon"
-      href="./images/jojart_red.png"
-      type="image/x-icon"
+            rel="shortcut icon"
+            href="./images/jojart_red.png"
+            type="image/x-icon"
     />
 
     <!--Styles-->
-    <link rel="stylesheet" href="root.css" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="root.css"/>
+    <link rel="stylesheet" href="index.css"/>
 
     <!--Scripts-->
     <script defer src="scripts/lib/jquery.min.js"></script>
@@ -20,62 +20,53 @@
     <script defer src="scripts/lib/math.js"></script>
     <script defer src="scripts/componentsManager.js"></script>
     <script defer src="index.js"></script>
-  </head>
 
-  <body>
-    <component path="./components/nav/navbar"></component>
+    <script defer src="scripts/test.js"></script>
+</head>
 
-    <div id="graph">
-      <component
-        path="./components/graph/graph"
-        id="mainGraphWrapper"
-        graphID="mainGraph"
-      >
-      </component>
+<body>
+<component path="./components/nav/navbar"></component>
+<div id="graphControl">
+    <div id="variableInputs">
+        <component
+                path="./components/lockableInput/lockableInput"
+                label="Displacement"
+                unit="m"
+                id="displacement"
+        ></component>
 
-      <div id="graphControl">
-        <div id="variableInputs">
-          <component
-            path="./components/lockableInput/lockableInput"
-            label="Displacement"
-            unit="m"
-            id="displacement"
-          ></component>
+        <component
+                path="./components/lockableInput/lockableInput"
+                label="Initial Velocity"
+                unit="m/s"
+                id="initVel"
+        ></component>
 
+        <component
+                path="./components/lockableInput/lockableInput"
+                label="Final Velocity"
+                unit="m/s"
+                id="finalVel"
+        ></component>
 
-          <component
-            path="./components/lockableInput/lockableInput"
-            label="Initial Velocity"
-            unit="m/s"
-            id="initVel"
-          ></component>
+        <component
+                path="./components/lockableInput/lockableInput"
+                label="Acceleration"
+                unit="m/s^2"
+                id="acc"
+        ></component>
 
-          <component
-            path="./components/lockableInput/lockableInput"
-            label="Final Velocity"
-            unit="m/s"
-            id="finalVel"
-          ></component>
-
-          <component
-            path="./components/lockableInput/lockableInput"
-            label="Acceleration"
-            unit="m/s^2"
-            id="acc"
-          ></component>
-
-          <component
-            path="./components/lockableInput/lockableInput"
-            label="Time"
-            unit="s"
-            id="time"
-          ></component>
-        </div>
-        <div id="recalculate-box">
-          <i id="recalculate" class="fi fi-sr-Rotate-Right"></i>
-          <span id="error-msg"></span>
-        </div>
-      </div>
+        <component
+                path="./components/lockableInput/lockableInput"
+                label="Time"
+                unit="s"
+                id="time"
+        ></component>
     </div>
-  </body>
+    <div id="recalculate-box">
+        <i id="recalculate" class="fi fi-sr-Rotate-Right"></i>
+        <span id="error-msg"></span>
+    </div>
+</div>
+</body>
 </html>

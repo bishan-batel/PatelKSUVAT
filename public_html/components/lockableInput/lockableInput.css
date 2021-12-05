@@ -1,54 +1,115 @@
+component[name="lockableInput"] {
+    display: flex;
+    flex-direction: row;
+
+    text-align: center;
+}
+
+.lockableInput-tab {
+    position: relative;
+    font-size: 1.3rem;
+    z-index: -1;
+
+    background: var(--bg);
+    border-radius: 10px;
+
+    color: var(--color5);
+
+    left: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+    width: 10rem;
+
+    filter: grayscale(40%);
+
+    transition: all 200ms ease-in-out;
+}
+
+.lockable-input-empty .lockableInput-tab {
+    left: 50%;
+    opacity: 50%;
+}
+
+.lockable-input-empty .lockableInput {
+    right: 5rem;
+}
+
+.lockableInput-tab-text {
+    overflow: hidden;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 100%;
+
+    color: white;
+
+    text-align: center;
+
+    transform: translateY(1rem);
+}
+
+
 .lockableInput {
-  display: inline;
-  overflow: hidden;
-  font-size: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.5rem;
 
-  padding: 1rem;
-  border-radius: 10px;
+    padding: 1rem;
+    border-radius: 10px;
 
-  display: flex;
+    right: 0;
+
+    background: var(--bg);
+
+    display: flex;
+
+    transition: all 200ms ease-in-out;
 }
 
 .lockableInput-label {
-  width: 20rem;
-  overflow: hidden;
-  font-weight: bold;
+    width: 20rem;
+    overflow: hidden;
+    font-weight: bold;
 }
 
 .lockableInput-unit {
-  font-size: 0.8em;
-  width: 5rem;
+    font-size: 0.8em;
+    width: 5rem;
 }
 
 .lockableInput-input {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 .lockableInput-input:disabled {
-  cursor: not-allowed;
+    cursor: not-allowed;
 }
 
 .lockableInput-lock {
-  margin-left: 2rem;
-  margin-top: 0.4rem;
+    margin-left: 2rem;
+    margin-top: 0.4rem;
 
-  color: floralwhite;
+    color: floralwhite;
 
-  transform: scale(180%);
-  transition: 200ms all ease-in-out;
+    transform: scale(180%);
+    transition: 200ms all ease-in-out;
 
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .locked .lockableInput-lock {
-  color: indianred;
+    filter: drop-shadow(3px 3px 10px black);
+    color: indianred;
 }
 
 .lockableInput-lock:hover {
-  transform: scale(200%);
-  cursor: pointer;
+    transform: scale(200%);
+    cursor: pointer;
 }
 
 .lockableInput-lock:active {
-  transform: scale(230%);
+    transform: scale(230%);
 }

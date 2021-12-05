@@ -1,113 +1,137 @@
-#graph {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  overflow: hidden;
-  border-radius: 10px;
-
-  display: flex;
-
-  background: var(--color1);
-
-  margin: 0;
-  padding: 0;
-}
-
-component#mainGraphWrapper {
-  position: relative;
-  /*background: ;*/
-
-  display: flex;
-  justify-content: center;
-
-  padding: 2rem;
-}
-
-component#mainGraphWrapper canvas {
-  border-radius: 20px;
-  overflow: hidden;
-  filter: drop-shadow(0px 0px 1px var(--color2));
-  border: 5px solid #00000000;
-  transition: all 200ms ease-in-out;
-}
-
-component#mainGraphWrapper canvas:hover {
-  border: 5px solid var(--color8);
-  filter: drop-shadow(0px 0px 10px var(--color7));
-
-  cursor: none;
-}
-
 #graphControl {
-  background: var(--color2);
-  width: 27rem;
-  padding: 1rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /*margin-left: 5rem;*/
+    background: var(--color1);
+    border-radius: 10px;
+
+    height: 80%;
+
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*margin-left: 5rem;*/
+
+    transition: all 200ms ease-in-out;
 }
 
+#graphControl:hover {
+    filter: drop-shadow(0px 50px 10px #000000AA);
+    top: 49.5%;
+}
+
+/*Incomplete Err Config*/
+.lockableInput-input {
+    border: 3px solid #00000000;
+    border-radius: 10px;
+
+    transition: all 100ms ease-in-out;
+}
+
+.incomplete > .lockableInput > .lockableInput-input {
+    position: relative;
+    transition: all 100ms ease-in-out;
+    border: 3px solid indianred;
+    border-radius: 10px;
+}
+
+.incomplete {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.shake {
+    --shake-amount: 1;
+    animation: shake 150ms infinite cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(calc(-1px * var(--shake-amount)), 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(calc(-2px * var(--shake-amount)), 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(calc(-4px * var(--shake-amount)), 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(calc(-4px * var(--shake-amount)), 0, 0);
+    }
+}
+
+/* Variable Inputs config */
 #variableInputs {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
-  overflow: hidden scroll;
-  height: 100%;
-}
-
-#variableInputs component:nth-of-type(5n + 1) .lockableInput {
-  background: var(--color9);
+    height: 100%;
 }
 
-#variableInputs component:nth-of-type(5n + 2) .lockableInput {
-  background: var(--color10);
+#variableInputs component:nth-of-type(5n + 1) {
+    --bg: var(--color9);
 }
 
-#variableInputs component:nth-of-type(5n + 3) .lockableInput {
-  background: var(--color11);
+#variableInputs component:nth-of-type(5n + 2) {
+    --bg: var(--color10);
 }
-#variableInputs component:nth-of-type(5n + 4) .lockableInput {
-  background: var(--color12);
+
+#variableInputs component:nth-of-type(5n + 3) {
+    --bg: var(--color11);
 }
-#variableInputs component:nth-of-type(5n + 5) .lockableInput {
-  background: var(--color13);
+
+#variableInputs component:nth-of-type(5n + 4) {
+    --bg: var(--color12);
+}
+
+#variableInputs component:nth-of-type(5n + 5) {
+    --bg: var(--color13);
 }
 
 #recalculate-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
 }
 
 #recalculate {
-  position: absolute;
-  font-size: 3rem;
+    position: absolute;
+    font-size: 2.3rem;
 
-  margin-top: -4rem;
+    margin-top: -2rem;
 
-  transition: transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
 }
 
 #recalculate:hover {
-  cursor: pointer;
-  transform: scale(110%) rotate(360deg);
+    cursor: pointer;
+    transform: scale(110%) rotate(360deg);
 }
 
 #recalculate:active {
-  color: var(--color14);
+    color: var(--color14);
 }
 
 #error-msg {
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: indianred;
-  margin-top: 3rem;
-  text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: indianred;
+    margin-top: 4rem;
+    text-align: center;
 }

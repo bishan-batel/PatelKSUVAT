@@ -1,94 +1,94 @@
 .header-bar {
-  font-size: 3rem;
+    font-size: 3rem;
 
-  background: var(--color1);
+    background: var(--color1);
 
-  position: fixed;
+    position: fixed;
 
-  padding: 16px;
-  padding-left: 10px;
+    padding: 16px 16px 16px 10px;
 
-  width: 10rem;
-  height: 5rem;
+    width: 10rem;
+    height: 5rem;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
-  display: flex;
+    display: flex;
 
-  transition: all 900ms var(--ease-in-out-back);
+    transition: all 900ms var(--ease-in-out-back);
 }
 
 .header-bar:hover {
-  filter: drop-shadow(-10px -10px 12px black);
-  transform: translate(2rem, 1.5rem);
+    filter: drop-shadow(-10px -10px 12px black);
 }
 
 #theme-selector {
-  cursor: pointer;
-  display: inline;
+    cursor: pointer;
+    display: inline;
 
-  margin-left: 0.5rem;
-  margin-top: 1rem;
-  position: absolute;
-  transition: all 100ms ease-in-out;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    position: absolute;
+    transition: all 100ms ease-in-out;
 }
 
 #theme-selector:hover {
-  color: var(--color6);
-  transform: scale(110%) translateY(-5%);
+    color: var(--color6);
+    transform: scale(110%) translateY(-5%);
 }
 
 #theme-selector:active {
-  transform: scale(120%) translateY(-10%);
+    transform: scale(120%) translateY(-10%);
 }
 
 #icon {
-  transition: all 900ms var(--ease-in-out-back);
-  margin-top: 0.1rem;
-  height: 5rem;
+    transition: all 900ms var(--ease-in-out-back);
+    margin-top: 0.1rem;
+    height: 5rem;
 
-  margin-right: 1rem;
-  border-radius: 9px;
+    margin-right: 1rem;
+    border-radius: 9px;
 }
 
 #icon:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .header-bar:hover #icon {
-  rotate: 360deg;
+    rotate: 360deg;
 }
 
 .header-bar:hover #icon:active {
-  rotate: calc(360deg + 15deg);
+    rotate: calc(360deg + 15deg);
 }
 
 .header-content {
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    position: fixed;
 }
 
 #website-title {
-  z-index: 99;
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
 
-  width: 30rem;
-  margin-left: 12rem;
-  position: fixed;
-  display: inline;
+    width: 30rem;
+    margin-left: 12rem;
+    position: fixed;
+    display: inline;
 
-  left: -100%;
-  opacity: 0%;
 
-  transform: rotate(15deg);
-  transition: all 900ms var(--ease-in-out-back);
+    text-align: left;
+
+    left: -200%;
+    top: 0%;
+    opacity: 0%;
+
+    rotate: 90deg;
+    transition: all 900ms var(--ease-in-out-back);
 }
 
 .header-bar:hover #website-title {
-  transform: rotate(0deg);
-  left: 0;
-  opacity: 100%;
+    top: 300%;
+    opacity: 100%;
 }

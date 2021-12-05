@@ -4,6 +4,6 @@
   "repository": "https://github.com/bishan-batel/PatelKSUVAT.git",
   "license": "MIT",
   "scripts": {
-    "start": "cd public_html && serve"
+    "start": "cd public_html && browser-sync start --server"
   }
 }

@@ -10,92 +10,90 @@ Math.lerp = (from, to, a) => from + (to - from) * a;
 Math.map = (o, oMin, oMax, tMin, tMax) => ((o - oMin) / oMax + tMin) * tMax;
 
 Math.Vector2 = function (x, y) {
-  this.x = x ?? 0;
-  this.y = y ?? 0;
+    this.x = x ?? 0;
+    this.y = y ?? 0;
 
-  this.lerp = ({ x, y }, a) => {
-    this.x = Math.lerp(this.x, x, a);
-    this.y = Math.lerp(this.y, y, a);
-  };
+    this.lerp = ({x, y}, a) => {
+        this.x = Math.lerp(this.x, x, a);
+        this.y = Math.lerp(this.y, y, a);
+    };
 
-  return this;
+    return this;
 };
 
 // SUVAT
 Math.SUVAT = (state) => {
-  let { displacement, velInitial, velFinal, acc, time } = state;
+    let {displacement, velInitial, velFinal, acc, time} = state;
 
-  // creates map of which values are missing or not
-  const missing = { ...state };
-  Object.keys(missing).forEach((k) => (missing[k] = missing[k] === undefined));
+    // calculates key from what variables are undefiend
+    // ex. system with displacement & acc missing the key would be "displacement acc"
+    const key = Object
+        .keys(state)
+        .filter(k => state[k] === undefined)
+        .reduce((prev, k) => prev + " " + k, "")
+        .trim();
 
-  // need 3 or more variables to define rest of system
-  const missingCount = Object.keys(missing).reduce(
-    (prev, k) => prev + missing[k],
-    0
-  );
+    // bases calculate depending on whats missing
+    switch (key) {
+        case "acc time": {
+            time = (2 * displacement) / (velInitial + velFinal);
+            acc = (velFinal - velInitial) / time;
+            break;
+        }
+        case "velFinal time": {
+            velFinal = Math.sqrt(velInitial * velInitial + 2 * acc * displacement);
+            time = (velFinal - velInitial) / acc;
+            break;
+        }
+        case "velFinal acc": {
+            acc = (2 * (displacement - velInitial * time)) / (time * time);
+            velFinal = velInitial + acc * time;
+            break;
+        }
+        case "velInitial time": {
+            velInitial = Math.sqrt(velFinal * velFinal - 2 * acc * displacement);
+            time = (velFinal - velInitial) / acc;
+            break;
+        }
+        case "velInitial acc": {
+            velInitial = (2 * displacement) / time - velFinal;
+            acc = (velFinal - velInitial) / time;
+            break;
+        }
+        case "displacement time": {
+            time = (velFinal - velInitial) / acc;
+            displacement = 0.5 * (velInitial + velFinal) * time;
+            break;
+        }
+        case "displacement acc": {
+            acc = (velFinal - velInitial) / time;
+            displacement = 0.5 * (velInitial + velFinal) * time;
+            break;
+        }
+        case "displacement velInitial": {
+            velInitial = velFinal - acc * time;
+            displacement = 0.5 * (velInitial + velFinal) * time;
+            break;
+        }
+        case "velInitial velFinal": {
+            velInitial = (displacement - 0.5 * acc * time) / time;
+            velFinal = velInitial + acc * time;
+            break;
+        }
+        case "displacement velFinal": {
+            velFinal = velInitial + acc * time;
+            displacement = 0.5 * (velInitial + velFinal) * time;
+            break;
+        }
+        // any other key means it is impossible to solve
+        case "":
+        default:
+            console.log('Failed to solve ' + key);
+            return undefined;
 
-  // if more than 3 missing than error out
-  if (missingCount >= 3) {
-    return undefined;
-  }
-
-  // Calculates other values based on missing
-
-  // Has Displacement
-  if (!missing.displacement) {
-    // Has Vel Init
-    if (!missing.velInitial) {
-      if (!missing.velFinal) {
-        time = (2 * displacement) / (velInitial + velFinal);
-        acc = (velFinal - velInitial) / time;
-      } else if (!missing.acc) {
-        velFinal = Math.sqrt(velInitial * velInitial + 2 * acc * displacement);
-        time = (velFinal - velInitial) / acc;
-      } else if (!missing.time) {
-        acc = (2 * (displacement - velInitial * time)) / (time * time);
-        velFinal = velInitial + acc * time;
-      }
-      // Has Vel Final
-    } else if (!missing.velFinal) {
-      if (!missing.acc) {
-        velInitial = Math.sqrt(velFinal * velFinal - 2 * acc * displacement);
-        time = (velFinal - velInitial) / acc;
-      } else if (!missing.time) {
-        velInitial = (2 * displacement) / time - velFinal;
-        acc = (velFinal - velInitial) / time;
-      }
-    } else if (!missing.acc) {
-      if (!missing.time) {
-        velInitial = (displacement - 0.5 * acc * time * time) / time;
-        velFinal = velInitial + acc * time;
-      }
     }
 
-    // Has Vel Initial
-  } else if (!missing.velInitial) {
-    // Has Vel Final
-    if (!missing.velFinal) {
-      if (!missing.acc) {
-        time = (velFinal - velInitial) / acc;
-        displacement = 0.5 * (velInitial + velFinal) * t;
-      } else if (!missing.time) {
-        acc = (velFinal - velInitial) / time;
-        displacement = 0.5 * (velInitial + velFinal) * t;
-      }
-    } else if (!missing.acc) {
-      if (!missing.time) {
-        velInitial = velFinal - acc * time;
-        displacement = 0.5 * (velInitial + velFinal) * t;
-      }
-    }
-  }
-
-  return {
-    displacement,
-    velInitial,
-    velFinal,
-    acc,
-    time,
-  };
+    return {
+        displacement, velInitial, velFinal, acc, time,
+    };
 };
