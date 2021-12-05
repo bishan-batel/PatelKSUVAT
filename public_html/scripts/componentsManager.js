@@ -40,9 +40,7 @@ const loadedComponents = [];
 
 // constructor for
 const createComponentEventListener = (name, event, callback) => ({
-    name,
-    event,
-    callback,
+    name, event, callback,
 });
 
 // component object for intializers for components
@@ -51,10 +49,7 @@ const components = {
     // the reason why I am combining it in the same 'component' namespace is to
     // keep code simple and clean, even if it means that it excludes me from
     // creating a component named 'on'
-    on: (componentName, event, callback) =>
-        listenerQueue.push(
-            createComponentEventListener(componentName, event, callback)
-        ),
+    on: (componentName, event, callback) => listenerQueue.push(createComponentEventListener(componentName, event, callback)),
 
     remove: (selector) => {
         document.removeChild($(selector));
@@ -74,9 +69,7 @@ function emitComponentEvent(componentName, event, args) {
 
     // deletes everything in deletion queue
     //
-    listenerQueue = listenerQueue.filter(
-        (listener) => !deleteQueue.includes(listener)
-    );
+    listenerQueue = listenerQueue.filter((listener) => !deleteQueue.includes(listener));
 }
 
 // Component Loading ----------------------------------------------------------
@@ -96,10 +89,7 @@ function loadComponents() {
             }
 
             // Used to create default file locations
-            const defaultFile = (filetype, wrapper) => [
-                `${path}.${filetype}`,
-                wrapper,
-            ];
+            const defaultFile = (filetype, wrapper) => [`${path}.${filetype}`, wrapper,];
 
             // gets metadata json for component
             const meta = await $.get(`${path}.json`);
@@ -107,11 +97,7 @@ function loadComponents() {
             const getFileQueue = () => {
                 // if 'default' is set to true assume to look for all default files
                 if (meta.default) {
-                    return [
-                        defaultFile("css", "style"),
-                        defaultFile("html", "html"),
-                        defaultFile("js", "script"),
-                    ];
+                    return [defaultFile("css", "style"), defaultFile("html", "html"), defaultFile("js", "script"),];
                 }
 
                 const queue = [];
