@@ -85,6 +85,26 @@ Math.SUVAT = (state) => {
             displacement = 0.5 * (velInitial + velFinal) * time;
             break;
         }
+        case "displacement": {
+            displacement = 0.5 * (velInitial + velFinal) * time;
+            break;
+        }
+        case "velInitial": {
+            velInitial = (displacement - 0.5 * acc * time) / time;
+            break;
+        }
+        case "velFinal": {
+            velFinal = velInitial + acc * time;
+            break;
+        }
+        case "acc": {
+            acc = (velFinal - velInitial) / time;
+            break;
+        }
+        case "time": {
+            time = (2 * displacement) / (velInitial + velFinal);
+            break;
+        }
         // any other key means it is impossible to solve
         case "":
         default:
