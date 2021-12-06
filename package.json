@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "cd public_html && browser-sync start --server"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.7"
   }
 }
